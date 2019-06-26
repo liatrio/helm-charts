@@ -1,0 +1,29 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: test@liatr.io
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    http01: {}
+    dns01:
+      providers:
+        - name: azure
+          azuredns:
+            # Service principal clientId (also called appId)
+            clientID: {{ .Values.clientID }}
+            # A secretKeyRef to a service principal ClientSecret (password)
+            # ref: https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-kubernetes-service-principal
+            clientSecretSecretRef:
+              name: {{ .Values.clientSecretSecretRef.name }}
+              key: {{ .Values.clientSecretSecretRef.key }}
+            # Azure subscription Id
+            subscriptionID: {{ .Values.subscriptionID }}
+            # Azure AD tenant Id
+            tenantID: {{ .Values.tenantID }}
+            # ResourceGroup name where dns zone is provisioned
+            resourceGroupName: {{ .Values.resourceGroupName }}
+            hostedZoneName: {{ .Values.hostedZoneName }}

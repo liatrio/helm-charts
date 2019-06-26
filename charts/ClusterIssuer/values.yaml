@@ -1,0 +1,8 @@
+clientID: "<NEEDS TO BE PASSED IN>"
+clientSecretSecretRef:
+  name: "<NEEDS TO BE PASSED IN>"
+  key: "<NEEDS TO BE PASSED IN>"
+subscriptionID: "<NEEDS TO BE PASSED IN>"
+tenantID: "<NEEDS TO BE PASSED IN>"
+resourceGroupName: "<NEEDS TO BE PASSED IN>"
+hostedZoneName: "<NEEDS TO BE PASSED IN>"
